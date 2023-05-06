@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SProgramacion</title>
+	<style type="text/css">
+		body{
+			text-align: center;
+		}
+		button{
+			border-radius: 10px;
+			font-size: 1.4rem;
+			height: 3rem;
+			width: 20%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Bienvenido al juego Piedra-Papel-Tijera</h1>
+	<p id="marcador">
+		Jugador: 0 Computadora: 0
+	</p>
+	<div>
+		<button id="btnPiedra" onclick="jugar(0)">
+			Piedra 💎
+		</button>
+		<button id="btnPapel" onclick="jugar(1)">
+			Papel 📋
+		</button>
+		<button id="btnTijera" onclick="jugar(2)">
+			Tijera ✂
+		</button>
+	</div>
+	<p id="resultado">
+		
+	</p>
+	<script type="text/javascript">
+		let vidaJug = 0;
+		let vidaPC = 0;
+		let arreglo = ["💎","📋","✂"];
+
+		function jugar(jugador){
+			let pc = Math.floor(Math.random()*3);
+			let res = "<h2> Elegiste: " + arreglo[jugador] + " y el PC : "+ arreglo[pc];
+			if( jugador == pc ){
+				res+=" Fue un empate 😁 </h2>";
+			}else{
+				if( jugador==0 && pc==1 ){ //Piedra vs Papel
+					res+=" Perdiste 😢 </h2>";
+					vidaPC+=1;
+				}else if( jugador==1 && pc==2 ){ // Papel vs Tijera
+					res+=" Perdiste 😢 </h2>";
+					vidaPC+=1;
+				}else if( jugador==2 && pc==0 ){ // Tijera vs Piedra
+					res+=" Perdiste 😢 </h2>";
+					vidaPC+=1;
+				}else{
+					res+= " Ganaste 😊🎉 </h2>";
+					vidaJug+=1;
+				}
+			}
+			document.getElementById("resultado").innerHTML=res;
+			document.getElementById("marcador").innerHTML="Jugador : " + vidaJug + " Computadora: " + vidaPC;
+		}
+	</script>
+</body>
+</html>
